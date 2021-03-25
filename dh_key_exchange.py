@@ -10,6 +10,7 @@ from Crypto.Util.number import *
 
 p = getStrongPrime(512)
 
+
 def get_good_randy():
     value = 0
     rand = 0
@@ -17,6 +18,7 @@ def get_good_randy():
         rand = getRandomRange(2, p-2)
         value = GCD(rand, p-1)
     return rand
+
 
 # ALICE
 a = get_good_randy()
