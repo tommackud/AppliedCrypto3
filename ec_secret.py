@@ -1,5 +1,3 @@
-from Crypto.PublicKey import RSA
-
 f = open('ecdsa/ecpriv.txt','r')
 lines=f.readlines()
 f.close()

@@ -5,11 +5,16 @@
 # Elliptic Curve Diffie-Hellman exchange to establish a shared
 # secret.  Use a NIST approved curve. (Module 5)
 #################################################################
+
+
+
+#################################################################
 # Generate a "Strong" prime (script below) p
 # Pick a "base" which can really just be the number g=2
 # Generate a PRIVATE random number, a, which shares no factors with p−1 (recipe below)
 # Calculate the public exponent: A:=ga(modp).
 # Publish your public key (triplet): p,g,A (DO NOT PUBLISH a!)
+#################################################################
 
 from Crypto.Util.number import *
 
@@ -56,8 +61,7 @@ print('\nALICE triplet: ' + str(p) + ' ' + str(base) + ' ' + (str(A)))
 # Digital Signature. (Module 6)
 #################################################################
 
-
-
+# dig_sig.py
 
 #################################################################
 # Validate the RSA digital signature of the packets you

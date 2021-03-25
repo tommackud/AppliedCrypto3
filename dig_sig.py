@@ -26,7 +26,7 @@ cin_remain = keyPair.u
 print('Modulus: ' + str(mod))
 print('Modulus len: ' + str(len(str(mod))))
 
-print(f"Public key:  (n={hex(keyPair.n)}, e={hex(keyPair.e)})")
+print(f"Public key:  '(n='{hex(keyPair.n)}, e={hex(keyPair.e)})")
 #print(f"Private key: (n={hex(keyPair.n)}, d={hex(keyPair.d)})")
 
 # RSA sign the message
@@ -40,7 +40,7 @@ print("Signature:", hex(signature))
 # RSA verify signature
 hash = int.from_bytes(sha512(msg).digest(), byteorder='big')
 hashFromSignature = pow(signature, keyPair.e, keyPair.n)
-# print("Signature valid:", hash == hashFromSignature)
+print("Signature valid:", hash == hashFromSignature)
 
 # Convert message to integer
 int_arr = [int(a) for a in msg]
