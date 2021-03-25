@@ -1,13 +1,14 @@
 #################################################################
+# Module 5 - Lesson 1 - Part 2: Diffie-Hellman Key Exchange (DHKE)
 # Generate a "Strong" prime (script below) p
 # Pick a "base" which can really just be the number g=2
 # Generate a PRIVATE random number, a, which shares no factors with p−1 (recipe below)
 # Calculate the public exponent: A:=ga(modp).
 # Publish your public key (triplet): p,g,A (DO NOT PUBLISH a!)
 #################################################################
-
 from Crypto.Util.number import *
 
+p = getStrongPrime(512)
 
 def get_good_randy():
     value = 0
@@ -17,30 +18,31 @@ def get_good_randy():
         value = GCD(rand, p-1)
     return rand
 
-
 # ALICE
-p = getStrongPrime(512)
 a = get_good_randy()
-base = 2
-A = pow(base, a, p)
+g = 2
+A = pow(g, a, p)
+
+print('ALICE triplet: ' + str(p) + ' ' + str(g) + ' ' + (str(A)))
+print()
 
 # BOB
 b = get_good_randy()
-B = pow(base, b, p)
+B = pow(g, b, p)
 BobsK = pow(A, b, p)
 
 # ALICE
 AlicesK = pow(B, a, p)
 
-AliceS = a * B
-BobS = b * A
+print('Supporting characters: ')
+print('a: ' + str(a) + '\n'
+      'b: ' + str(b) + '\n'
+      'BobsK: ' + str(BobsK) + '\n'
+      'AlicesK: ' + str(AlicesK) + '\n'
+      'base: ' + str(g) + '\n'
+      'p: ' + str(p) + '\n'
+      'A: ' + str(A) + '\n'
+      'B: ' + str(B) + '\n')
 
-# Public: base, p, A, B
-# Private: a, b, K
 
-print('Private Stuff: \na: ' + str(a) + '\nb: ' + str(a) + '\nK: ' + str(AlicesK))
-print('AliceS: ' + str(AliceS))
-print('BobS: ' + str(BobS))
-print('\nPublic Stuff: \nbase: ' + str(base) + '\np: ' + str(p) + '\nA: ' + str(A) + '\nB: ' + str(B))
-print('\nALICE triplet: ' + str(p) + ' ' + str(base) + ' ' + (str(A)))
 
