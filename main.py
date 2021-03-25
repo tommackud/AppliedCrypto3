@@ -6,58 +6,9 @@
 # secret.  Use a NIST approved curve. (Module 5)
 #################################################################
 
-H = '4605408159534553736597366043669151574698598193262484584573429284096438228900474579404339194\
-    544253862653927555002609, 38082516598374742874180481269524393659692890370536236619655531868495\
-    99087224960474693563763065203281900951840590045'
-
-
-#################################################################
-# Generate a "Strong" prime (script below) p
-# Pick a "base" which can really just be the number g=2
-# Generate a PRIVATE random number, a, which shares no factors with p−1 (recipe below)
-# Calculate the public exponent: A:=ga(modp).
-# Publish your public key (triplet): p,g,A (DO NOT PUBLISH a!)
-#################################################################
-
-from Crypto.Util.number import *
-
-
-def get_good_randy():
-    value = 0
-    rand = 0
-    while value != 1:
-        rand = getRandomRange(2, p-2)
-        value = GCD(rand, p-1)
-    return rand
-
-
-# ALICE
-p = getStrongPrime(512)
-a = get_good_randy()
-base = 2
-A = pow(base, a, p)
-
-# BOB
-b = get_good_randy()
-B = pow(base, b, p)
-BobsK = pow(A, b, p)
-
-# ALICE
-AlicesK = pow(B, a, p)
-
-AliceS = a * B
-BobS = b * A
-
-# Public: base, p, A, B
-# Private: a, b, K
-
-print('Private Stuff: \na: ' + str(a) + '\nb: ' + str(a) + '\nK: ' + str(AlicesK))
-print('AliceS: ' + str(AliceS))
-print('BobS: ' + str(BobS))
-print('\nPublic Stuff: \nbase: ' + str(base) + '\np: ' + str(p) + '\nA: ' + str(A) + '\nB: ' + str(B))
-print('\nALICE triplet: ' + str(p) + ' ' + str(base) + ' ' + (str(A)))
-
-
+# H = '4605408159534553736597366043669151574698598193262484584573429284096438228900474579404339194\
+#     544253862653927555002609, 38082516598374742874180481269524393659692890370536236619655531868495\
+#     99087224960474693563763065203281900951840590045'
 
 #################################################################
 # For each chunk of public information sent generate an RSA
@@ -71,15 +22,18 @@ print('\nALICE triplet: ' + str(p) + ' ' + str(base) + ' ' + (str(A)))
 # receive. (Module 6)
 #################################################################
 
+
 #################################################################
 # Once you have a shared key encrypt a message using AES in
 # GCM mode (not in our notes but not too different). (Module 3)
 #################################################################
 
+
 #################################################################
 # If you can pull that off (even as both sides of the conversation)
 # then you'll have done a full industry ready HTTPS packet encryption.
 #################################################################
+
 
 #################################################################
 # Here is an online site you can use to validate your ECDH parameters:

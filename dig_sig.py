@@ -19,9 +19,9 @@ keyPair = RSA.generate(bits=2048)
 mod = keyPair.n
 pub_exp = keyPair.e
 pri_exp = keyPair.d
-first_fac = keyPair.p
-second_fac = keyPair.q
-cin_remain = keyPair.u
+# first_fac = keyPair.p
+# second_fac = keyPair.q
+# chin_remain = keyPair.u
 
 print('Modulus: ' + str(mod))
 print('Modulus len: ' + str(len(str(mod))))
