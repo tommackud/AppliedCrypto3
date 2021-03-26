@@ -15,7 +15,7 @@ from hashlib import sha512
 # f.close()
 
 # Attempt at using built in key generation
-keyPair = RSA.generate(bits=2048)
+keyPair = RSA.generate(bits=1024)
 mod = keyPair.n
 pub_exp = keyPair.e
 pri_exp = keyPair.d
